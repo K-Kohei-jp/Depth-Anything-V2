@@ -16,7 +16,7 @@ if __name__ == '__main__':
     parser.add_argument('--input-size', type=int, default=518)
     parser.add_argument('--outdir', type=str, default='./vis_depth')
     
-    parser.add_argument('--encoder', type=str, default='vitl', choices=['vits', 'vitb', 'vitl', 'vitg'])
+    parser.add_argument('--encoder', type=str, default='vits', choices=['vits', 'vitb', 'vitl', 'vitg'])
     
     parser.add_argument('--pred-only', dest='pred_only', action='store_true', help='only display the prediction')
     parser.add_argument('--grayscale', dest='grayscale', action='store_true', help='do not apply colorful palette')
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     }
     
     depth_anything = DepthAnythingV2(**model_configs[args.encoder])
-    depth_anything.load_state_dict(torch.load(f'checkpoints/depth_anything_v2_{args.encoder}.pth', map_location='cpu'))
+    depth_anything.load_state_dict(torch.load(f'D:\chatGPT\img_analysis\Depth-Anything-V2\checkpoints\depth_anything_v2_{args.encoder}.pth', map_location='cpu'))
     depth_anything = depth_anything.to(DEVICE).eval()
     
     if os.path.isfile(args.img_path):
